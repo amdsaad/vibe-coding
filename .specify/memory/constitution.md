@@ -1,19 +1,16 @@
 <!--
   Sync Impact Report
   ==================
-  Version change: 0.0.0 → 1.0.0 (initial ratification)
-  Modified principles: N/A (first version)
+  Version change: 1.0.0 → 1.1.0 (MINOR — added accent color split, clarified revalidatePath exemption)
+  Modified principles:
+    - II. Server Actions for Mutations — added auth action exemption for revalidatePath()
   Added sections:
-    - Core Principles (10 principles)
-    - Design System Constraints
-    - Prohibited Patterns
-    - Tooling & Infrastructure
-    - Governance
+    - Design System Constraints: "Accent color split" subsection (teal functional vs red brand)
   Removed sections: N/A
   Templates requiring updates:
-    - .specify/templates/plan-template.md — ✅ compatible (Constitution Check section exists)
-    - .specify/templates/spec-template.md — ✅ compatible (no conflicts)
-    - .specify/templates/tasks-template.md — ✅ compatible (phase structure aligns)
+    - .specify/templates/plan-template.md — ✅ compatible
+    - .specify/templates/spec-template.md — ✅ compatible
+    - .specify/templates/tasks-template.md — ✅ compatible
     - .specify/templates/checklist-template.md — ✅ compatible
     - .specify/templates/agent-file-template.md — ✅ compatible
   Follow-up TODOs: None
@@ -38,7 +35,10 @@ fetching, and aligns with Next.js 16 App Router architecture.
 All data mutations MUST use `"use server"` actions defined in the `actions/`
 directory. API route handlers (`app/api/`) MUST NOT be created for CRUD
 operations. Every Server Action MUST validate input with Zod before any
-database operation. Every mutation MUST call `revalidatePath()` after success.
+database operation. Every data mutation MUST call `revalidatePath()` after
+success. Auth state mutations (signIn, signOut, signUp) that only modify
+session cookies and immediately redirect or return a message are exempt
+from `revalidatePath()` since they do not alter the Next.js data cache.
 
 **Rationale**: Centralizes mutation logic, enforces validation at the server
 boundary, and ensures cache coherence.
@@ -144,6 +144,16 @@ Font assignments:
 - `Space Grotesk` → headings, logo, prices, decorative numbers, marquee text
 - `JetBrains Mono` → body, navigation, labels, tags, buttons, footers
 
+Accent color split:
+- **Brand accent (red `#E70000`)**: CTAs, navbar CTA button, marketing
+  headings, marquees, scrollbar, text selection, pill tags
+- **Functional accent (teal `#0d9488`)**: Form input focus rings, form
+  submit buttons, input borders on focus. Used in dashboard/auth forms
+  to distinguish interactive form elements from brand accents.
+
+This split is intentional: red carries the brand identity on public-facing
+pages, while teal provides a calmer functional accent for data-entry UI.
+
 ## Prohibited Patterns
 
 The following MUST NOT exist in the codebase:
@@ -196,4 +206,4 @@ these principles.
 Constitution Check that verifies alignment with these principles before
 implementation begins.
 
-**Version**: 1.0.0 | **Ratified**: 2026-03-12 | **Last Amended**: 2026-03-12
+**Version**: 1.1.0 | **Ratified**: 2026-03-12 | **Last Amended**: 2026-03-12

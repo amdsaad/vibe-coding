@@ -2,10 +2,20 @@
   "permissions": {
     "allow": [
       "Bash(grep:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/create-new-feature.ps1 \"Authentication System\" -Json -ShortName \"auth-system\")",
+      "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/create-new-feature.ps1 -Json -ShortName \"auth-system\" \"Authentication System\")",
+      "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/create-new-feature.ps1' -Json -ShortName 'auth-system' -Number 0 -FeatureDescription 'Authentication System'\")",
+      "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/check-prerequisites.ps1' -Json -PathsOnly\")",
+      "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/setup-plan.ps1' -Json\")",
+      "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/update-agent-context.ps1' -AgentType claude\")",
+      "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/check-prerequisites.ps1' -Json\")",
+      "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/check-prerequisites.ps1' -Json -RequireTasks -IncludeTasks\")"
     ]
   },
-  "disabledMcpjsonServers": [
+  "enabledMcpjsonServers": [
     "supabase"
-  ]
+  ],
+  "disabledMcpjsonServers": [],
+  "enableAllProjectMcpServers": true
 }
