@@ -19,10 +19,10 @@
 
 **Purpose**: Install dependencies and create configuration files
 
-- [ ] T001 Install packages: `npm install @supabase/supabase-js @supabase/ssr zod sonner`
-- [ ] T002 [P] Create `.env.local` with empty Supabase env vars and comment pointing to dashboard
-- [ ] T003 [P] Create `supabase/schema.sql` with database schema and RLS policies from plan
-- [ ] T004 [P] Create `supabase/storage.sql` with storage bucket definitions and policies from plan
+- [x] T001 Install packages: `npm install @supabase/supabase-js @supabase/ssr zod sonner`
+- [x] T002 [P] Create `.env.local` with empty Supabase env vars and comment pointing to dashboard
+- [x] T003 [P] Create `supabase/schema.sql` with database schema and RLS policies from plan
+- [x] T004 [P] Create `supabase/storage.sql` with storage bucket definitions and policies from plan
 
 ---
 
@@ -32,21 +32,21 @@
 
 **CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 [P] Create `lib/supabase/client.ts` — browser client using `createBrowserClient` with `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
-- [ ] T006 [P] Create `lib/supabase/server.ts` — server client using `createServerClient` with cookie-based session handling
-- [ ] T007 [P] Create `lib/supabase/proxy.ts` — `updateSession()` helper that refreshes session via `getClaims()` on every request
-- [ ] T008 Create `proxy.ts` at project root — imports `updateSession` from `lib/supabase/proxy`, exports `proxy()` function with route matcher (depends on T007)
-- [ ] T009 Create `lib/auth.ts` — `getUser()` returns claims or null via `getClaims()`, `requireAuth()` redirects to `/sign-in` if unauthenticated (depends on T006)
-- [ ] T010 [P] Create `lib/database.types.ts` — TypeScript types for `Profile`, `SocialLink`, `Project`, `ProfileCategory`, `ThemeName`, `ProfileWithRelations`
-- [ ] T011 [P] Create `lib/validators.ts` — Zod schemas: `signUpSchema` (email + password min 8), `signInSchema` (email + password min 1), `profileSchema`, `projectSchema`, `socialLinkSchema`
-- [ ] T012 [P] Create `lib/constants.ts` — `CATEGORIES`, `THEMES`, `SOCIAL_PLATFORMS` arrays with value/label pairs
-- [ ] T013 [P] Create `components/ui/button.tsx` — variants (default, outline, ghost, destructive), sizes, disabled/loading states, `rounded-full` pill shape, teal functional accent (`bg-teal-600 hover:bg-teal-700`) for form submit buttons (red brand accent used separately for marketing CTAs per constitution design system split)
-- [ ] T014 [P] Create `components/ui/input.tsx` — styled text input with error state (`border-red-500`), teal functional focus ring (`focus:ring-2 focus:ring-teal-500 focus:ring-offset-2`)
-- [ ] T015 [P] Create `components/ui/card.tsx` — container with `border`, `rounded-lg`, shadow, padding
-- [ ] T016 [P] Create `components/ui/form-field.tsx` — wrapper component: `<label>` + child input + error message `<p>` in red
-- [ ] T017 Update `app/globals.css` — add design system CSS custom properties (`:root` vars), `@theme inline` block, theme classes (`.theme-minimal`, etc.), `::selection`, scrollbar styles, striped-border, animations
-- [ ] T018 Update `next.config.ts` — add `images.remotePatterns` for `*.supabase.co` storage URLs
-- [ ] T019 Create `actions/auth.ts` — three Server Actions: `signUp` (validates with signUpSchema, calls `supabase.auth.signUp()`, returns `{ success }` or `{ error }`), `signIn` (validates with signInSchema, calls `signInWithPassword()`, generic error message, `redirect('/dashboard')` on success), `signOut` (calls `supabase.auth.signOut()`, `redirect('/')`) (depends on T006, T011)
+- [x] T005 [P] Create `lib/supabase/client.ts` — browser client using `createBrowserClient` with `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+- [x] T006 [P] Create `lib/supabase/server.ts` — server client using `createServerClient` with cookie-based session handling
+- [x] T007 [P] Create `lib/supabase/proxy.ts` — `updateSession()` helper that refreshes session via `getClaims()` on every request
+- [x] T008 Create `proxy.ts` at project root — imports `updateSession` from `lib/supabase/proxy`, exports `proxy()` function with route matcher (depends on T007)
+- [x] T009 Create `lib/auth.ts` — `getUser()` returns claims or null via `getClaims()`, `requireAuth()` redirects to `/sign-in` if unauthenticated (depends on T006)
+- [x] T010 [P] Create `lib/database.types.ts` — TypeScript types for `Profile`, `SocialLink`, `Project`, `ProfileCategory`, `ThemeName`, `ProfileWithRelations`
+- [x] T011 [P] Create `lib/validators.ts` — Zod schemas: `signUpSchema` (email + password min 8), `signInSchema` (email + password min 1), `profileSchema`, `projectSchema`, `socialLinkSchema`
+- [x] T012 [P] Create `lib/constants.ts` — `CATEGORIES`, `THEMES`, `SOCIAL_PLATFORMS` arrays with value/label pairs
+- [x] T013 [P] Create `components/ui/button.tsx` — variants (default, outline, ghost, destructive), sizes, disabled/loading states, `rounded-full` pill shape, teal functional accent (`bg-teal-600 hover:bg-teal-700`) for form submit buttons (red brand accent used separately for marketing CTAs per constitution design system split)
+- [x] T014 [P] Create `components/ui/input.tsx` — styled text input with error state (`border-red-500`), teal functional focus ring (`focus:ring-2 focus:ring-teal-500 focus:ring-offset-2`)
+- [x] T015 [P] Create `components/ui/card.tsx` — container with `border`, `rounded-lg`, shadow, padding
+- [x] T016 [P] Create `components/ui/form-field.tsx` — wrapper component: `<label>` + child input + error message `<p>` in red
+- [x] T017 Update `app/globals.css` — add design system CSS custom properties (`:root` vars), `@theme inline` block, theme classes (`.theme-minimal`, etc.), `::selection`, scrollbar styles, striped-border, animations
+- [x] T018 Update `next.config.ts` — add `images.remotePatterns` for `*.supabase.co` storage URLs
+- [x] T019 Create `actions/auth.ts` — three Server Actions: `signUp` (validates with signUpSchema, calls `supabase.auth.signUp()`, returns `{ success }` or `{ error }`), `signIn` (validates with signInSchema, calls `signInWithPassword()`, generic error message, `redirect('/dashboard')` on success), `signOut` (calls `supabase.auth.signOut()`, `redirect('/')`) (depends on T006, T011)
 
 **Checkpoint**: Foundation ready — user story implementation can now begin
 
@@ -60,9 +60,9 @@
 
 ### Implementation for User Story 1
 
-- [ ] T020 [US1] Create `app/(auth)/layout.tsx` — Server Component, centered card layout wrapper with `max-w-md mx-auto` centered on page, no `"use client"`
-- [ ] T021 [US1] Create `components/auth/sign-up-form.tsx` — `"use client"`, uses `useActionState(signUp, null)`, fields: email + password using `Input` and `FormField` components, shows error/success messages from state, submit `Button` with pending/loading state, link to sign-in page (depends on T013, T014, T016, T019)
-- [ ] T022 [US1] Create `app/(auth)/sign-up/page.tsx` — Server Component, checks `getUser()` and redirects to `/dashboard` if authenticated (FR-015), renders `SignUpForm` inside a `Card`, page title "Create Account" (depends on T009, T015, T020, T021)
+- [x] T020 [US1] Create `app/(auth)/layout.tsx` — Server Component, centered card layout wrapper with `max-w-md mx-auto` centered on page, no `"use client"`
+- [x] T021 [US1] Create `components/auth/sign-up-form.tsx` — `"use client"`, uses `useActionState(signUp, null)`, fields: email + password using `Input` and `FormField` components, shows error/success messages from state, submit `Button` with pending/loading state, link to sign-in page (depends on T013, T014, T016, T019)
+- [x] T022 [US1] Create `app/(auth)/sign-up/page.tsx` — Server Component, checks `getUser()` and redirects to `/dashboard` if authenticated (FR-015), renders `SignUpForm` inside a `Card`, page title "Create Account" (depends on T009, T015, T020, T021)
 
 **Checkpoint**: User Story 1 fully functional — sign-up form works with validation and success message
 
@@ -76,8 +76,8 @@
 
 ### Implementation for User Story 2
 
-- [ ] T023 [US2] Create `components/auth/sign-in-form.tsx` — `"use client"`, uses `useActionState(signIn, null)`, fields: email + password, shows generic error message from state, submit `Button` with pending state, link to sign-up page, reads `?error=confirmation_failed` from URL search params to show confirmation error (depends on T013, T014, T016, T019)
-- [ ] T024 [US2] Create `app/(auth)/sign-in/page.tsx` — Server Component, checks `getUser()` and redirects to `/dashboard` if authenticated (FR-015), renders `SignInForm` inside a `Card`, page title "Sign In" (depends on T009, T015, T020, T023)
+- [x] T023 [US2] Create `components/auth/sign-in-form.tsx` — `"use client"`, uses `useActionState(signIn, null)`, fields: email + password, shows generic error message from state, submit `Button` with pending state, link to sign-up page, reads `?error=confirmation_failed` from URL search params to show confirmation error (depends on T013, T014, T016, T019)
+- [x] T024 [US2] Create `app/(auth)/sign-in/page.tsx` — Server Component, checks `getUser()` and redirects to `/dashboard` if authenticated (FR-015), renders `SignInForm` inside a `Card`, page title "Sign In" (depends on T009, T015, T020, T023)
 
 **Checkpoint**: User Stories 1 AND 2 both work independently — full sign-up and sign-in flows functional
 
@@ -91,9 +91,9 @@
 
 ### Implementation for User Story 3
 
-- [ ] T025 [P] [US3] Create `components/auth/user-menu.tsx` — `"use client"`, receives user email as prop, shows first letter of email in a colored circle (`bg-red text-white rounded-full`), click toggles dropdown with Dashboard link and Sign Out button, Sign Out calls `signOut` action (depends on T019)
-- [ ] T026 [US3] Create `components/layout/navbar.tsx` — Server Component, calls `getUser()` to check auth state, renders: logo (Space Grotesk, red, links to `/`), "Explore" link (points to `/explore` — will 404 until Explore feature is built, acceptable for incremental delivery), conditionally Sign In/Sign Up links (anonymous) or `UserMenu` (authenticated). Styled per design system: `fixed top-0 z-50 bg-background/90 backdrop-blur-sm border-b border-foreground/5` (depends on T009, T025)
-- [ ] T027 [US3] Update `app/layout.tsx` — import Space Grotesk + JetBrains Mono via `next/font/google`, apply font CSS variables to `<body>`, import and render `Navbar` at top, import `Toaster` from `sonner` and render it, set `lang="en"` on `<html>` (depends on T026)
+- [x] T025 [P] [US3] Create `components/auth/user-menu.tsx` — `"use client"`, receives user email as prop, shows first letter of email in a colored circle (`bg-red text-white rounded-full`), click toggles dropdown with Dashboard link and Sign Out button, Sign Out calls `signOut` action (depends on T019)
+- [x] T026 [US3] Create `components/layout/navbar.tsx` — Server Component, calls `getUser()` to check auth state, renders: logo (Space Grotesk, red, links to `/`), "Explore" link (points to `/explore` — will 404 until Explore feature is built, acceptable for incremental delivery), conditionally Sign In/Sign Up links (anonymous) or `UserMenu` (authenticated). Styled per design system: `fixed top-0 z-50 bg-background/90 backdrop-blur-sm border-b border-foreground/5` (depends on T009, T025)
+- [x] T027 [US3] Update `app/layout.tsx` — import Space Grotesk + JetBrains Mono via `next/font/google`, apply font CSS variables to `<body>`, import and render `Navbar` at top, import `Toaster` from `sonner` and render it, set `lang="en"` on `<html>` (depends on T026)
 
 **Checkpoint**: Navigation fully functional with auth state reflection across all pages
 
@@ -107,8 +107,8 @@
 
 ### Implementation for User Story 4
 
-- [ ] T028 [US4] Create `app/dashboard/layout.tsx` — Server Component, calls `requireAuth()` at top (redirects unauthenticated users to `/sign-in`), renders children inside a dashboard container (`max-w-[1400px] mx-auto px-6 md:px-12 py-12`) (depends on T009)
-- [ ] T029 [US4] Create `app/dashboard/page.tsx` — Server Component, fetches profile via `supabase.from('profiles').select('id').eq('user_id', claims.sub).single()`, if profile exists: show placeholder text ("Profile editor coming soon"), if no profile: show "Create Your Profile" CTA button styled with design system (large heading, descriptive text, red primary button) (depends on T006, T009, T028)
+- [x] T028 [US4] Create `app/dashboard/layout.tsx` — Server Component, calls `requireAuth()` at top (redirects unauthenticated users to `/sign-in`), renders children inside a dashboard container (`max-w-[1400px] mx-auto px-6 md:px-12 py-12`) (depends on T009)
+- [x] T029 [US4] Create `app/dashboard/page.tsx` — Server Component, fetches profile via `supabase.from('profiles').select('id').eq('user_id', claims.sub).single()`, if profile exists: show placeholder text ("Profile editor coming soon"), if no profile: show "Create Your Profile" CTA button styled with design system (large heading, descriptive text, red primary button) (depends on T006, T009, T028)
 
 **Checkpoint**: All user stories 1-4 functional — complete auth flow with dashboard
 
@@ -122,7 +122,7 @@
 
 ### Implementation for User Story 5
 
-- [ ] T030 [US5] Create `app/(auth)/auth/confirm/route.ts` — GET route handler, extracts `token_hash` and `type` from `request.nextUrl.searchParams`, creates server Supabase client, calls `supabase.auth.verifyOtp({ type, token_hash })`, redirects to `/dashboard` on success, redirects to `/sign-in?error=confirmation_failed` on failure, handles missing params gracefully (depends on T006)
+- [x] T030 [US5] Create `app/(auth)/auth/confirm/route.ts` — GET route handler, extracts `token_hash` and `type` from `request.nextUrl.searchParams`, creates server Supabase client, calls `supabase.auth.verifyOtp({ type, token_hash })`, redirects to `/dashboard` on success, redirects to `/sign-in?error=confirmation_failed` on failure, handles missing params gracefully (depends on T006)
 
 **Checkpoint**: All 5 user stories complete — full authentication system functional
 
@@ -132,8 +132,8 @@
 
 **Purpose**: Build verification and compliance checks
 
-- [ ] T031 Run `npm run build` and verify zero errors
-- [ ] T032 Verify no prohibited patterns exist: search codebase for `middleware.ts`, `getSession()` on server, `ANON_KEY`, `react-hook-form`, `any` type usage — must find zero matches. Also verify `proxy.ts` correctly calls `getClaims()` in `updateSession()` to ensure session refresh handles expiry on every request (covers edge case: session expires while user is on dashboard).
+- [x] T031 Run `npm run build` and verify zero errors
+- [x] T032 Verify no prohibited patterns exist: search codebase for `middleware.ts`, `getSession()` on server, `ANON_KEY`, `react-hook-form`, `any` type usage — must find zero matches. Also verify `proxy.ts` correctly calls `getClaims()` in `updateSession()` to ensure session refresh handles expiry on every request (covers edge case: session expires while user is on dashboard).
 
 ---
 

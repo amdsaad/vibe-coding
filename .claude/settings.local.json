@@ -10,12 +10,18 @@
       "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/setup-plan.ps1' -Json\")",
       "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/update-agent-context.ps1' -AgentType claude\")",
       "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/check-prerequisites.ps1' -Json\")",
-      "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/check-prerequisites.ps1' -Json -RequireTasks -IncludeTasks\")"
+      "Bash(cd \"E:/vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/check-prerequisites.ps1' -Json -RequireTasks -IncludeTasks\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)",
+      "Bash(cd E:/vibe-coding && npm install @supabase/supabase-js @supabase/ssr zod sonner)",
+      "mcp__supabase__get_project_url",
+      "mcp__supabase__get_publishable_keys",
+      "mcp__supabase__apply_migration",
+      "Bash(cd E:/vibe-coding && npm run build 2>&1)"
     ]
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "supabase"
   ],
-  "disabledMcpjsonServers": [],
-  "enableAllProjectMcpServers": true
+  "disabledMcpjsonServers": []
 }
