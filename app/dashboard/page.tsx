@@ -1,44 +1,60 @@
 import { requireAuth } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
-import Link from "next/link";
+import { ProfileForm } from "@/components/dashboard/profile-form";
+import { ProjectListEditor } from "@/components/dashboard/project-list-editor";
+import { DeleteProfileButton } from "@/components/dashboard/delete-profile-button";
+import type { ProfileWithRelations } from "@/lib/database.types";
 
 export default async function DashboardPage() {
   const claims = await requireAuth();
   const supabase = await createClient();
+  const userId = (claims as Record<string, unknown>).sub as string;
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("id")
-    .eq("user_id", (claims as Record<string, unknown>).sub as string)
+    .select("*, social_links(*), projects(*)")
+    .eq("user_id", userId)
     .single();
 
-  if (profile) {
-    return (
-      <div className="animate-fade-in">
-        <h1 className="text-3xl font-sans font-bold uppercase tracking-wider mb-4">
-          Dashboard
-        </h1>
-        <p className="text-gray font-mono">
-          Profile editor coming soon.
-        </p>
-      </div>
-    );
-  }
+  const typedProfile = profile as ProfileWithRelations | null;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center animate-fade-in">
-      <h1 className="text-4xl md:text-5xl font-sans font-bold uppercase tracking-wider mb-4">
-        Create Your Profile
+    <div className="animate-fade-in">
+      <h1 className="text-3xl font-sans font-bold uppercase tracking-wider mb-8">
+        {typedProfile ? "EDIT YOUR PROFILE" : "CREATE YOUR PROFILE"}
       </h1>
-      <p className="text-gray font-mono max-w-md mb-8">
-        Set up your portfolio to showcase your work and connect with others.
-      </p>
-      <Link
-        href="/dashboard/profile/create"
-        className="rounded-full bg-red px-8 py-3 text-base font-mono font-medium text-white hover:bg-red-dark transition-colors uppercase tracking-wide"
-      >
-        Get Started
-      </Link>
+
+      <div className="max-w-2xl space-y-12">
+        <ProfileForm
+          profile={typedProfile ?? undefined}
+          userId={userId}
+        />
+
+        {typedProfile && (
+          <>
+            <section>
+              <h2 className="text-xl font-sans font-bold uppercase tracking-wider mb-4">
+                PROJECTS
+              </h2>
+              <ProjectListEditor
+                projects={typedProfile.projects ?? []}
+                profileId={typedProfile.id}
+                userId={userId}
+              />
+            </section>
+
+            <section className="border-t border-foreground/10 pt-8">
+              <h2 className="text-xl font-sans font-bold uppercase tracking-wider mb-2 text-red-500">
+                DANGER ZONE
+              </h2>
+              <p className="text-xs font-mono text-foreground/50 mb-4">
+                Permanently delete your profile and all associated data.
+              </p>
+              <DeleteProfileButton />
+            </section>
+          </>
+        )}
+      </div>
     </div>
   );
 }

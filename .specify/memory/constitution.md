@@ -1,11 +1,13 @@
 <!--
   Sync Impact Report
   ==================
-  Version change: 1.0.0 → 1.1.0 (MINOR — added accent color split, clarified revalidatePath exemption)
+  Version change: 1.1.0 → 1.2.0 (MINOR — added database migration principle XI)
   Modified principles:
-    - II. Server Actions for Mutations — added auth action exemption for revalidatePath()
+    - None modified
   Added sections:
-    - Design System Constraints: "Accent color split" subsection (teal functional vs red brand)
+    - XI. Database Migrations via MCP/CLI — new principle
+    - Tooling & Infrastructure — expanded with migration workflow details
+    - Prohibited Patterns — added manual SQL application pattern
   Removed sections: N/A
   Templates requiring updates:
     - .specify/templates/plan-template.md — ✅ compatible
@@ -126,6 +128,29 @@ All UI MUST follow the Vibes design system defined in
 **Rationale**: Visual consistency is the product's core value proposition.
 Deviations create a fragmented user experience.
 
+### XI. Database Migrations via MCP/CLI
+
+All database schema changes (DDL) MUST be applied to the live Supabase
+database using the Supabase MCP `apply_migration` tool or the Supabase CLI.
+Schema changes MUST NOT be left as local SQL files for manual application.
+The workflow is:
+
+1. Write the migration SQL
+2. Apply it immediately via `mcp__supabase__apply_migration` (preferred)
+   or `supabase db push` / `supabase migration up` (CLI alternative)
+3. Verify the result via `mcp__supabase__list_tables` or equivalent
+4. Keep `supabase/schema.sql` updated as the canonical reference for fresh
+   deployments
+
+Local SQL files in `supabase/migrations/` serve as documentation and for
+fresh database setup — they are NOT a substitute for applying changes to
+the live database during development.
+
+**Rationale**: Local-only SQL files create drift between the codebase and
+the live database. The MCP server and CLI exist specifically to ensure
+schema changes are applied immediately and verified, preventing "works on
+my machine" failures.
+
 ## Design System Constraints
 
 Color tokens MUST be used via CSS custom properties:
@@ -171,17 +196,24 @@ The following MUST NOT exist in the codebase:
 | `type: any` | TypeScript strict mode enforced |
 | `Resend` or email service imports | Supabase Auth handles emails |
 | `SUPABASE_SECRET_KEY` in client code | Never expose with `NEXT_PUBLIC_` prefix |
+| Writing migration SQL without applying it | Use MCP `apply_migration` or CLI to apply immediately |
 
 ## Tooling & Infrastructure
 
 - **Supabase MCP server**: Configured and authenticated in this project.
-  Use MCP tools for Supabase operations when available.
-- **Supabase CLI**: Installed and ready for use. Can be used for type
-  generation, migrations, and local development.
+  MUST be used for all database operations: `apply_migration` for DDL,
+  `execute_sql` for queries, `list_tables` for verification. This is the
+  preferred tool over the CLI for migrations.
+- **Supabase CLI**: Installed and ready for use. Alternative to MCP for
+  migrations (`supabase db push`), type generation, and local development.
+- **Migration workflow**: Write SQL → apply via MCP `apply_migration` →
+  verify via `list_tables` → update `supabase/schema.sql` for reference.
+  NEVER leave migrations as unapplied local files.
 - **Environment variables**: `NEXT_PUBLIC_SUPABASE_URL`,
   `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`
 - **Database schema**: Defined in `supabase/schema.sql` (3 tables with RLS)
-  and `supabase/storage.sql` (2 buckets with policies)
+  and `supabase/storage.sql` (2 buckets with policies). These are canonical
+  references for fresh deployments.
 - **Build verification**: `npm run build` MUST pass with zero errors after
   every phase completion
 
@@ -206,4 +238,4 @@ these principles.
 Constitution Check that verifies alignment with these principles before
 implementation begins.
 
-**Version**: 1.1.0 | **Ratified**: 2026-03-12 | **Last Amended**: 2026-03-12
+**Version**: 1.2.0 | **Ratified**: 2026-03-12 | **Last Amended**: 2026-03-12

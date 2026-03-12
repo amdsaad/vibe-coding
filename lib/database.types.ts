@@ -1,30 +1,32 @@
 export type ProfileCategory =
-  | "creative"
   | "developer"
   | "designer"
   | "photographer"
   | "writer"
-  | "musician"
-  | "filmmaker"
+  | "marketer"
+  | "data_scientist"
+  | "product_manager"
   | "other";
 
 export type ThemeName =
   | "minimal"
   | "bold"
   | "elegant"
-  | "playful"
-  | "dark";
+  | "neon"
+  | "paper"
+  | "terminal";
 
 export type Profile = {
   id: string;
   user_id: string;
   username: string;
-  display_name: string;
+  slug: string;
   bio: string | null;
   avatar_url: string | null;
   category: ProfileCategory;
   theme: ThemeName;
-  is_published: boolean;
+  skills: string[];
+  published: boolean;
   created_at: string;
   updated_at: string;
 };
@@ -35,7 +37,6 @@ export type SocialLink = {
   platform: string;
   url: string;
   sort_order: number;
-  created_at: string;
 };
 
 export type Project = {

@@ -101,28 +101,57 @@ body {
   animation: slide-down 0.2s ease-out;
 }
 
-/* Theme classes */
+/* Theme classes for public profile pages */
 .theme-minimal {
-  --background: #FAFAF8;
-  --foreground: #0A0A0A;
+  --profile-bg: #FAFAF8;
+  --profile-text: #0A0A0A;
+  --profile-accent: #E70000;
+  --profile-muted: #6B6B6B;
+  --profile-border: #E8E8E8;
+  --profile-card-bg: #FFFFFF;
 }
 
 .theme-bold {
-  --background: #0A0A0A;
-  --foreground: #FAFAF8;
+  --profile-bg: #0A0A0A;
+  --profile-text: #FAFAF8;
+  --profile-accent: #E70000;
+  --profile-muted: #999999;
+  --profile-border: #333333;
+  --profile-card-bg: #1A1A1A;
 }
 
 .theme-elegant {
-  --background: #F5F0EB;
-  --foreground: #1A1A1A;
+  --profile-bg: #F5F0EB;
+  --profile-text: #1A1A1A;
+  --profile-accent: #8B6914;
+  --profile-muted: #7A7068;
+  --profile-border: #D9D0C7;
+  --profile-card-bg: #FFFDF9;
 }
 
-.theme-playful {
-  --background: #FFF8F0;
-  --foreground: #2D2D2D;
+.theme-neon {
+  --profile-bg: #0D0D0D;
+  --profile-text: #E0E0E0;
+  --profile-accent: #00FF88;
+  --profile-muted: #888888;
+  --profile-border: #1A3A2A;
+  --profile-card-bg: #111111;
 }
 
-.theme-dark {
-  --background: #111111;
-  --foreground: #E8E8E8;
+.theme-paper {
+  --profile-bg: #F4F1EA;
+  --profile-text: #2C2C2C;
+  --profile-accent: #B85C38;
+  --profile-muted: #8A8478;
+  --profile-border: #D5CFC5;
+  --profile-card-bg: #FAF8F3;
+}
+
+.theme-terminal {
+  --profile-bg: #1E1E1E;
+  --profile-text: #00FF00;
+  --profile-accent: #00FF00;
+  --profile-muted: #00AA00;
+  --profile-border: #333333;
+  --profile-card-bg: #252525;
 }

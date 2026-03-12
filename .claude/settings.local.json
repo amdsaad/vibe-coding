@@ -16,7 +16,16 @@
       "mcp__supabase__get_project_url",
       "mcp__supabase__get_publishable_keys",
       "mcp__supabase__apply_migration",
-      "Bash(cd E:/vibe-coding && npm run build 2>&1)"
+      "Bash(cd E:/vibe-coding && npm run build 2>&1)",
+      "Bash(cd \"E:\\\\vibe-coding\" && powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/create-new-feature.ps1\" -Json -ShortName \"profile-crud\" \"Profile CRUD - Create, edit, and delete portfolio profiles with skills, social links, and projects\")",
+      "Bash(cd \"E:\\\\vibe-coding\" && powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/create-new-feature.ps1\" -ShortName \"profile-crud\" -Json \"Profile CRUD - Create, edit, and delete portfolio profiles with skills, social links, and projects\")",
+      "Bash(cd \"E:\\\\vibe-coding\" && powershell -ExecutionPolicy Bypass -Command \"& '.specify/scripts/powershell/create-new-feature.ps1' -ShortName 'profile-crud' -Json -FeatureDescription 'Profile CRUD - Create edit and delete portfolio profiles with skills social links and projects'\")",
+      "Bash(cd \"E:\\\\vibe-coding\" && powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json -PathsOnly)",
+      "Bash(cd \"E:\\\\vibe-coding\" && powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/setup-plan.ps1\" -Json)",
+      "Bash(cd \"E:\\\\vibe-coding\" && powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/update-agent-context.ps1\" -AgentType claude)",
+      "Bash(cd \"E:\\\\vibe-coding\" && powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json)",
+      "mcp__supabase__list_tables",
+      "mcp__supabase__list_migrations"
     ]
   },
   "enableAllProjectMcpServers": true,
